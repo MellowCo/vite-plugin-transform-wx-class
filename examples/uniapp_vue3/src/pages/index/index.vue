@@ -8,13 +8,22 @@ const title = ref('Hello')
     <view class="indent-1/2">
       indent-1/2
     </view>
-    <view class="font-[system-ui]">
+    <view class="font-[system-ui] bg-teal-200:55">
       font-[system-ui]
     </view>
     <view class="font-$font-name">
       font-$font-name
     </view>
-    <view class="tracking-[2/5]">
+
+    <view class="font-$font-name" :class="[title === '2.3' ? 'font-$font-name' : 'tracking-[2/5]']">
+      font-$font-name
+    </view>
+
+    <view :class="{ 'bg-teal-200:55': title === 'Hello', 'h-1.000%': title === 'Hello' }">
+      font-$font-name
+    </view>
+
+    <view class="tracking-[2/5] bg-teal-200:55">
       tracking-[2/5]
     </view>
     <view class="h-1.000%">
@@ -54,7 +63,6 @@ const title = ref('Hello')
   display: flex;
   justify-content: center;
 }
-
 .title {
   font-size: 36rpx;
   color: #8f8f94;
