@@ -1,7 +1,7 @@
 {
   "name": "vite-plugin-transform-wx-class",
   "type": "module",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "packageManager": "pnpm@7.2.1",
   "description": "",
   "author": "MellowCo <anthonyfu117@hotmail.com>",
@@ -45,7 +45,7 @@
     "start": "esno src/index.ts",
     "test": "vitest",
     "typecheck": "tsc --noEmit",
-    "play":"npm -C examples/uniapp_vue3 run dev:mp-weixin"
+    "play": "npm -C examples/uniapp_vue3 run dev:mp-weixin"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.25.1",
