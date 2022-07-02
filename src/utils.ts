@@ -58,6 +58,7 @@ export function transformCode(code: string) {
     })
     code = code.replace(c[0], newClass)
   })
+
   return code
 }
 
