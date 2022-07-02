@@ -1,5 +1,5 @@
 {
-  "name": "transform-wx-class",
+  "name": "vite-plugin-transform-wx-class",
   "type": "module",
   "version": "0.0.0",
   "packageManager": "pnpm@7.2.1",

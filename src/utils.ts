@@ -1,32 +1,3 @@
-/*
- * @Author: licl
- * @Date: 2022-06-30 20:14:54
- * @LastEditTime: 2022-07-01 13:57:32
- * @LastEditors: licl
- * @Description:
- */
-
-// 关联
-const transformRules: { [key: string]: string } = {
-  '.': '-d-',
-  '/': '-s-',
-  ':': '-c-',
-  '%': '-p-',
-  '!': '-e-',
-  '#': '-w-',
-  '(': '-bl-',
-  ')': '-br-',
-  '[': '-fl-',
-  ']': '-fr-',
-  '$': '-r-',
-}
-
-export function transformClass(code: string) {
-  const classNames = getClass(code)
-
-  return classNames
-}
-
 /**
  * 获取class
  * @param code - 源码
@@ -62,4 +33,46 @@ export function getArrClass(className: string) {
   // ]
   // => ['font-$font-name bg-teal-200:55', 'tracking-[2/5]','font-$font-name tracking-[2/5]']
   return Array.from(className.matchAll(/(?<=[\?\:])\s*'(.+?)'/g)).map(v => v[1])
+}
+
+const transformRules: { [key: string]: string } = {
+  '.': '-d-',
+  '/': '-s-',
+  ':': '-c-',
+  '%': '-p-',
+  '!': '-e-',
+  '#': '-w-',
+  '(': '-bl-',
+  ')': '-br-',
+  '[': '-fl-',
+  ']': '-fr-',
+  '$': '-r-',
+}
+
+export function transformCode(code: string) {
+  const classNames = getClass(code)
+  classNames.forEach((c) => {
+    let newClass = c[0]
+    c.slice(1).forEach((v) => {
+      newClass = newClass.replace(v, transformSelector(v, false))
+    })
+    code = code.replace(c[0], newClass)
+  })
+  return code
+}
+
+export function transformSelector(selector: string, hasEscape = true) {
+  for (const transformRule in transformRules) {
+    if (hasEscape) {
+      if (selector.includes(`\\${transformRule}`)) {
+        // 转义字符 \. \$
+        selector = selector.replace(`\\${transformRule}`, transformRules[transformRule])
+      }
+    }
+    else {
+      if (selector.includes(transformRule))
+        selector = selector.replace(transformRule, transformRules[transformRule])
+    }
+  }
+  return selector
 }
