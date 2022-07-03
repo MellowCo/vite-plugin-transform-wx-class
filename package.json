@@ -1,7 +1,7 @@
 {
   "name": "vite-plugin-transform-wx-class",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "packageManager": "pnpm@7.2.1",
   "description": "",
   "author": "MellowCo <anthonyfu117@hotmail.com>",
