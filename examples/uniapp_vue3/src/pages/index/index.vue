@@ -16,11 +16,11 @@ const title = ref('Hello')
     </view>
 
     <view class="font-$font-name" :class="[title === '2.3' ? 'font-$font-name' : 'tracking-[2/5]']">
-      font-$font-name
+      [title === '2.3' ? 'font-$font-name' : 'tracking-[2/5]']
     </view>
 
-    <view :class="{ 'bg-teal-200:55': title === 'Hello', 'h-1.000%': title === 'Hello' }">
-      font-$font-name
+    <view :class="{ 'bg-teal-200:55': title !== 'Hello', 'h-1.000%': title === 'Hello' }">
+      { 'bg-teal-200:55': title !== 'Hello', 'h-1.000%': title === 'Hello' }
     </view>
 
     <view class="tracking-[2/5] bg-teal-200:55">

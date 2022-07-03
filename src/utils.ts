@@ -63,17 +63,16 @@ export function transformCode(code: string) {
 }
 
 export function transformSelector(selector: string, hasEscape = true) {
-  for (const transformRule in transformRules) {
-    if (hasEscape) {
-      if (selector.includes(`\\${transformRule}`)) {
-        // 转义字符 \. \$
-        selector = selector.replace(`\\${transformRule}`, transformRules[transformRule])
-      }
-    }
-    else {
-      if (selector.includes(transformRule))
-        selector = selector.replace(transformRule, transformRules[transformRule])
-    }
+  const prefix = hasEscape ? '\\' : ''
+  const start = selector.startsWith('.')
+
+  if (start)
+    selector = selector.slice(1)
+
+  if (/[\.\/:%!#\(\)\[\]$]/.test(selector)) {
+    for (const transformRule in transformRules)
+      selector = selector.replace(`${prefix}${transformRule}`, transformRules[transformRule])
   }
-  return selector
+
+  return start ? `.${selector}` : selector
 }
