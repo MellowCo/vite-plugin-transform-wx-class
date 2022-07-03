@@ -30,6 +30,8 @@ pnpm add -D unocss vite-plugin-transform-wx-class unocss-preset-wxapp
 
 ## `vite.config.ts`
 
+> 在[uni-app vue 3.0 中使用](https://ask.dcloud.net.cn/article/37834)中使用
+
 ```js
 import { defineConfig } from 'vite'
 import uni from '@dcloudio/vite-plugin-uni'
